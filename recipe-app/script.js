@@ -119,7 +119,7 @@ function addMealToFav(mealData) {
             src="${mealData.strMealThumb}"
             alt="${mealData.strMeal}"
         /><span>${mealData.strMeal}</span>
-        <button class="clear"><i class="fas fa-window-close<</i></button>
+        <button class="clear"><i class="fas fa-window-close"></i></i></button>
     `;
 
   const btn = favMeal.querySelector(".clear");

@@ -82,6 +82,7 @@ header button {
 .fav-meals li .clear {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   opacity: 0;
   position: absolute;
   top: -0.5rem;

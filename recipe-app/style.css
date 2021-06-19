@@ -74,6 +74,7 @@ header button {
 }
 
 .fav-meals li {
+  cursor: pointer;
   position: relative;
   margin: 5px;
   width: 75px;
@@ -115,6 +116,7 @@ header button {
 .meal {
   border-radius: 3px;
   box-shadow: 0 0 10px 2px #3333331a;
+  cursor: pointer;
   margin: 1.5rem;
   overflow: hidden;
 }
@@ -160,3 +162,49 @@ header button {
 .meal-body .fav-btn.active {
   color: rebeccapurple;
 }
+
+/* meal info */
+.popup-container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.popup-container.hidden {
+  opacity: 0;
+  /* user-select: none; Note that what is user-select  */
+  pointer-events: none;
+}
+
+.popup {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 0 2rem;
+  position: relative;
+  overflow: auto;
+  max-height: 100vh;
+  max-width: 600px;
+  width: 100%;
+}
+
+.popup .close-popup {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.meal-info-h1 {
+  text-align: center;
+}
+
+/* End of meal-info */

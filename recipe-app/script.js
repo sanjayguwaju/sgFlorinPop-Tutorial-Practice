@@ -1,8 +1,11 @@
 const mealsEl = document.getElementById("meals");
-const favoriteContainer = document.getElementById('fav-meals');
-const searchTerm = document.getElementById('search-term');
+const favoriteContainer = document.getElementById("fav-meals");
+const searchTerm = document.getElementById("search-term");
 const searchBtn = document.getElementById('search');
 
+const mealPopup = document.getElementById("meal-popup");
+const mealInfoEl = document.getElementById("meal-info");
+const popupCloseBtn = document.getElementById("close-popup");
 getRandomMeal();
 fetchFavMeals();
 
@@ -76,6 +79,10 @@ function addMeal(mealData, random = false) {
 
   });
 
+  meal.addEventListener('click', () => {
+    showMealInfo(mealData);
+  });
+
   mealsEl.appendChild(meal);
 }
 
@@ -112,14 +119,14 @@ async function fetchFavMeals() {
 
     meal = await getMealById(mealId);
 
-    addMealToFav(meal);
+    addMealFav(meal);
   }
   // Add them to the screen
 }
 
 // Function for Add Meal to Favourite
 
-function addMealToFav(mealData) {
+function addMealFav(mealData) {
   const favMeal = document.createElement("li");
   favMeal.innerHTML = `
         <img 
@@ -137,8 +144,65 @@ function addMealToFav(mealData) {
     fetchFavMeals();
   });
 
+  // meal.addEventListener('click', () => {
+  //   showMealInfo(mealData);
+  // });
+
   favoriteContainer.appendChild(favMeal);
 }
+
+// Meal info functionality data from API
+function showMealInfo(mealData) {
+
+  //clean it up
+  mealInfoEl.innerHTML = '';
+
+  //update the Meal info
+  const mealEl = document.createElement('div');
+
+  // get ingredients and measures
+  /*  for (let i = 1; i <= 20; i++) {
+     if (mealData["strIngredient" + i]) {
+       ingredients.push(
+         `${mealData["strIngredient" + i]}` 
+         - ${
+           mealData["strMeasure" + i]
+         }
+       );
+     } else {
+       break;
+     }
+   } */
+
+  mealEl.innerHTML = `
+  <h1>${mealData.strMeal}</h1>
+          <img
+            src="${mealData.strMealThumb}"
+            alt="Random food Details"
+          />
+          <p>
+          ${mealData.strInstructions}
+          </p>
+  `;
+
+  /*           <h3>Ingredients:</h3>
+            <ul>
+             ${Ingredients
+        .map(
+          (ing) => `
+          <li>${ing}</li>
+          `
+        )
+        .join("")}
+            </ul> */
+
+  mealInfoEl.appendChild(mealEl);
+
+  // show the popup
+
+  mealPopup.classList.remove('hidden');
+}
+// End of Meal info functionality data from API
 
 
 // Search Functionality
@@ -160,3 +224,9 @@ searchBtn.addEventListener('click', async () => {
 
 });
 // End of Search Functionality
+
+// Popup Close Button 
+
+popupCloseBtn.addEventListener('click', () => {
+  mealPopup.classList.add('hidden');
+});
